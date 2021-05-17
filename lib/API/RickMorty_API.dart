@@ -30,8 +30,7 @@ class RickMorty {
         name: _character['name'],
         url: _character['url'],
         created: _character['created'],
-
-        episode: List.from(_character['episode']),
+        episode: List.from(_character['episode'] ?? []),
         gender: genderFromString(_character['gender']),
         image: _character['image'],
         location: Location(
@@ -72,7 +71,7 @@ class RickMorty {
         url: _episode['url'],
         created: _episode['created'],
         airDate: _episode['air_date'],
-        characters: List.from(_episode['characters']),
+        characters: List.from(_episode['characters'] ?? []),
         episode: _episode['episode'],
       ));
     }
@@ -108,7 +107,7 @@ class RickMorty {
         url: _episode['url'],
         created: _episode['created'],
         airDate: _episode['air_date'],
-        characters: List.from(_episode['characters']),
+        characters: List.from(_episode['characters'] ?? []),
         episode: _episode['episode'],
       ));
     }
@@ -139,7 +138,44 @@ class RickMorty {
         url: _location['url'],
         created: _location['created'],
         dimension: _location['dimension'],
-        residents: List.from(_location['residents']),
+        residents: List.from(_location['residents'] ?? []),
+        type: _location['type'],
+      ));
+    }
+
+    return _finalList;
+  }
+
+
+
+  ///Return a casual list of 5 locations
+  static Future<List<AdvancedLocation>> getCasualLocations({int numberOfLocations = 5}) async {
+    List<AdvancedLocation> _finalList = [];
+
+    List<int> _casualLocations = [];
+    Random random = Random();
+    for (var i = 0; i < numberOfLocations; i++) {
+      int number = random.nextInt(108) + 1;
+      if(_casualLocations.contains(number)){
+        i--;
+      } else {
+        _casualLocations.add(number);
+      }
+    }
+
+    //Get the response from server
+    http.Response response = await http.get(Uri.parse('https://rickandmortyapi.com/api/episode/${_casualLocations.join(', ')}'));
+    List<dynamic> _locations = List.from(json.decode(response.body));
+
+    ///Get the effective locations and add it to _finalList
+    for (Map _location in _locations) {
+      _finalList.add(AdvancedLocation(
+        id: _location['id'],
+        name: _location['name'],
+        url: _location['url'],
+        created: _location['created'],
+        dimension: _location['dimension'],
+        residents: List.from(_location['residents'] ?? []),
         type: _location['type'],
       ));
     }

@@ -4,6 +4,7 @@ import 'package:rick_morty/CustomWidgets/RMText.dart';
 import 'package:rick_morty/Error/ErrorHandler.dart';
 import 'package:rick_morty/HomePage/Widgets/CharactersWidget.dart';
 import 'package:rick_morty/HomePage/Widgets/EpisodesWidget.dart';
+import 'package:rick_morty/HomePage/Widgets/LocationsWidget.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -27,10 +28,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverList(delegate: SliverChildListDelegate([
-
-            TextButton(onPressed: () => Errors.connectionError(context), child: Text('error')),
 
             ///The title bar
             Padding(
@@ -63,9 +63,12 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 30),
 
-            
+            ///The locations widget
+            LocationsWidget(),
 
-          ]))  
+            SizedBox(height: 30),
+
+          ]))
         ],
       ),
     );

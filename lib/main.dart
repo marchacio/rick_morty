@@ -48,11 +48,12 @@ class SplashScreen extends StatelessWidget {
 
     var connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult == ConnectivityResult.none) {
-      await Errors.connectionError(context).then((_) async => await _caricamento(context));
+      await Errors.connectionError(context);
+      return;
+    } else {
+      await Future.delayed(Duration(milliseconds: 900)).then((value) 
+        => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage())));
     }
-
-    await Future.delayed(Duration(milliseconds: 900)).then((value) 
-      => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())));
   }
 }
 

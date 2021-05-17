@@ -10,6 +10,16 @@ class CharactersWidget extends StatefulWidget {
 }
 
 class _CharactersWidgetState extends State<CharactersWidget> {
+
+  List<Character> characters = [];
+
+  @override
+  void initState() { 
+    super.initState();
+    RickMorty.getCharacters()..then((value) 
+      => setState(() => characters = value));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,60 +31,70 @@ class _CharactersWidgetState extends State<CharactersWidget> {
 
         Container(
           height: 200, //TODO
-          child: FutureBuilder(
-            future: RickMorty.getCharacters(),
-            builder: (context, AsyncSnapshot<List<Character>> snap) {
-              if(snap.data != null) {
-                return ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, int n) => AspectRatio(
-                    aspectRatio: 1/1.5,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Stack(
-                        fit: StackFit.loose,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: CachedNetworkImage(
-                              height: 200,
-                              fit: BoxFit.fitHeight,
-                              imageUrl: snap.data![n].image 
-                                ?? 'https://is1-ssl.mzstatic.com/image/thumb/Purple115/v4/55/6c/3d/556c3db2-a149-332e-7e6e-a490f7b00f0c/source/256x256bb.jpg',
-                              progressIndicatorBuilder: (context, url, downloadProgress) => Container(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                            ),
-                          ),
-
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.black.withOpacity(0.5),
-                                ],
-                                begin: Alignment.center,
-                                end: Alignment.bottomCenter,
-                              ),
-                            ),
-                            padding: const EdgeInsets.only(bottom: 10),
-                            alignment: Alignment.bottomCenter,
-                            child: RMText(snap.data![n].name, textScaleFactor: 1.4, maxLines: 3,),
-                          ),
-                        ],
-                      ),
-                    ) 
+          child: (characters.isNotEmpty) 
+            ? ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (context, int n) => (n == characters.length) 
+              ? AspectRatio(
+                aspectRatio: 1.4,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.transparent,
+                      image: DecorationImage(image: AssetImage('Assets/Images/avatar2.png'))
+                    ),
+                    padding: const EdgeInsets.only(bottom: 10),
+                    alignment: Alignment.bottomCenter,
+                    child: RMText('See all', textScaleFactor: 3),
                   ),
-                  itemCount: snap.data!.length,
-                );
-              }
+                ) 
+              )
+              : AspectRatio(
+                aspectRatio: 1/1.4,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Stack(
+                    fit: StackFit.loose,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: CachedNetworkImage(
+                          height: 200,
+                          fit: BoxFit.fitHeight,
+                          imageUrl: characters[n].image 
+                            ?? 'https://is1-ssl.mzstatic.com/image/thumb/Purple115/v4/55/6c/3d/556c3db2-a149-332e-7e6e-a490f7b00f0c/source/256x256bb.jpg',
+                          progressIndicatorBuilder: (context, url, downloadProgress) => Container(),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
+                      ),
 
-              return Container();
-            }
-          ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.5),
+                            ],
+                            begin: Alignment.center,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        padding: const EdgeInsets.only(bottom: 10),
+                        alignment: Alignment.bottomCenter,
+                        child: RMText(characters[n].name, textScaleFactor: 1.4, maxLines: 3,),
+                      ),
+                    ],
+                  ),
+                ) 
+              ),
+              itemCount: characters.length + 1,
+            )
+          : Container(),
         )
       ],
     );

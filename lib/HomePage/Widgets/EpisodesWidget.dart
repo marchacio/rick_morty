@@ -9,38 +9,39 @@ class EpisodesWidget extends StatefulWidget {
 }
 
 class _EpisodesWidgetState extends State<EpisodesWidget> {
+
+  List<Episode> randomEpisodes = [];
+
+  @override
+  void initState() { 
+    super.initState();
+    RickMorty.getCasualEpisodes()..then((value) 
+      => setState(() => randomEpisodes = value));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        
+
         ListTile(
           title: Text('Episodes', textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
         ),
 
-        FutureBuilder(
-          future: RickMorty.getCasualEpisodes(),
-          builder: (context, AsyncSnapshot<List<Episode>> snap) {
-            if(snap.data != null) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Wrap(
-                  spacing: 5,
-                  children: List<Widget>.generate(
-                    snap.data!.length, 
-                    (n) => Chip(
-                      label: Text(snap.data![n].name),
-                      onDeleted: () => null,
-                      deleteIcon: RMText(snap.data![n].episode!.replaceRange(3, null, '').replaceFirst('0', ' '), textScaleFactor: 0.9, maxLines: 1,),
-                    )
-                  ),
-                ),
-              );
-            }
-
-            return Container();
-          }
-        ),
+        (randomEpisodes.isNotEmpty) ? Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Wrap(
+            spacing: 5,
+            children: List<Widget>.generate(
+              randomEpisodes.length, 
+              (n) => Chip(
+                label: Text(randomEpisodes[n].name),
+                onDeleted: () => null,
+                deleteIcon: RMText(randomEpisodes[n].episode!.replaceRange(3, null, '').replaceFirst('0', ' '), textScaleFactor: 0.9, maxLines: 1,),
+              )
+            ),
+          ),
+        ) : Container(),
       ],
     );
   }
