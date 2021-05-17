@@ -23,9 +23,9 @@ class _EpisodesWidgetState extends State<EpisodesWidget> {
           builder: (context, AsyncSnapshot<List<Episode>> snap) {
             if(snap.data != null) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Wrap(
-                  spacing: 10,
+                  spacing: 5,
                   children: List<Widget>.generate(
                     snap.data!.length, 
                     (n) => Chip(

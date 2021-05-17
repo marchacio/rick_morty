@@ -26,7 +26,7 @@ class _CharactersWidgetState extends State<CharactersWidget> {
             builder: (context, AsyncSnapshot<List<Character>> snap) {
               if(snap.data != null) {
                 return ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, int n) => AspectRatio(

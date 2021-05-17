@@ -1,4 +1,6 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:rick_morty/Error/ErrorHandler.dart';
 
 import 'HomePage/HomePage.dart';
 
@@ -43,7 +45,13 @@ class SplashScreen extends StatelessWidget {
   }
 
   Future<void> _caricamento(BuildContext context) async {
-    Future.delayed(Duration(milliseconds: 900)).then((value) 
+
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if(connectivityResult == ConnectivityResult.none) {
+      await Errors.connectionError(context).then((_) async => await _caricamento(context));
+    }
+
+    await Future.delayed(Duration(milliseconds: 900)).then((value) 
       => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())));
   }
 }
