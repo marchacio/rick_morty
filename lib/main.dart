@@ -6,7 +6,8 @@ import 'HomePage/HomePage.dart';
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
-      primaryColor: Colors.green
+      primarySwatch: Colors.green,
+      //brightness: Brightness.dark
     ),
     home: SplashScreen(),
   ));
