@@ -26,6 +26,7 @@ class _EpisodesWidgetState extends State<EpisodesWidget> {
 
         ListTile(
           title: Text('Episodes', textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
+          trailing: Image.asset('Assets/Images/avatar1.png'),
         ),
 
         (randomEpisodes.isNotEmpty) ? Padding(

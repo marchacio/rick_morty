@@ -16,6 +16,14 @@ class Location {
     required this.name,
     required this.url,
   });
+
+
+  ///Yes, hahahahhahah i used a string separator
+  ///An efficient choice, but I'm ashamed of it hahaha
+  @override
+  String toString() {
+    return name + 'MARCHACIO_RICKMORTY' + url;
+  }
 }
 
 
