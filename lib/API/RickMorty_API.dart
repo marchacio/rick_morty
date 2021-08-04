@@ -8,9 +8,7 @@ import 'package:rick_morty/RXDart/Constants.dart';
 ///The main class of the API
 class RickMorty {
 
-  ///Return a list of 20 characters
-  ///
-  ///Change [page] value to get other characters
+  ///Return all characters
   static Future<List<Character>> getCharacters() async {
     List<Character> _finalList = [];
 
@@ -27,14 +25,8 @@ class RickMorty {
         episode: (_character['episode'] ?? '').toString().replaceAll('[', '').replaceAll(']', '').split(', '),
         gender: genderFromString(_character['gender']),
         image: _character['image'],
-        location: Location(
-          name: (_character['location'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[0].toString(),
-          url: (_character['location'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[1].toString(),
-        ),
-        origin: Location(
-          name: (_character['origin'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[0].toString(),
-          url: (_character['origin'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[1].toString(),
-        ),
+        location: (_character['location'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[1].toString(),
+        origin: (_character['origin'] ?? '[]').toString().split('MARCHACIO_RICKMORTY')[1].toString(),
         species: _character['species'],
         status: statusFromString(_character['status']),
         type: _character['type'],
@@ -70,8 +62,8 @@ class RickMorty {
   }
 
 
-  ///Return a casual list of 8 episodes
-  static Future<List<Episode>> getCasualEpisodes({int numberOfEpisodes = 5}) async {
+  ///Return a casual list of 5 episodes
+  static List<Episode> getCasualEpisodes({int numberOfEpisodes = 5}) {
     assert(numberOfEpisodes < 41);
 
     List<Episode> _finalList = [];
@@ -86,11 +78,9 @@ class RickMorty {
         _casualEpisodes.add(number);
       }
     }
-
-    List<Episode> _episodes = await getEpisodes();
     
     for (int index in _casualEpisodes) {
-      _finalList.add(_episodes[index]);
+      _finalList.add(lists.episodes[index]);
     }
 
     return _finalList;
@@ -98,15 +88,15 @@ class RickMorty {
 
 
   ///Return all locations saved in database
-  static Future<List<AdvancedLocation>> getLocations() async {
-    List<AdvancedLocation> _finalList = [];
+  static Future<List<Location>> getLocations() async {
+    List<Location> _finalList = [];
 
     //Load locations from database
     List<Map<String, Object?>> _locations = await database.database.rawQuery('SELECT * FROM Locations');
 
     ///Get the effective location and add it to _finalList
     for (Map _location in _locations) {
-      _finalList.add(AdvancedLocation(
+      _finalList.add(Location(
         id: _location['id'],
         name: _location['name'],
         url: _location['url'],
@@ -123,11 +113,11 @@ class RickMorty {
 
 
   ///Return a casual list of 5 locations
-  static Future<List<AdvancedLocation>> getCasualLocations({int numberOfLocations = 5}) async {
+  static List<Location> getCasualLocations({int numberOfLocations = 5}) {
 
     assert(numberOfLocations < 108);
 
-    List<AdvancedLocation> _finalList = [];
+    List<Location> _finalList = [];
 
     List<int> _casualLocations = [];
     Random random = Random();
@@ -140,11 +130,10 @@ class RickMorty {
       }
     }
 
-    List<AdvancedLocation> _locations = await getLocations();
 
     ///Get the effective locations and add it to _finalList
     for (int index in _casualLocations) {
-      _finalList.add(_locations[index]);
+      _finalList.add(lists.locations[index]);
     }
 
     return _finalList;

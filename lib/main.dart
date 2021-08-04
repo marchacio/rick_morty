@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rick_morty/API/RickMorty_API.dart';
 import 'package:rick_morty/Error/ErrorHandler.dart';
 import 'package:rick_morty/RXDart/Constants.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,6 +16,12 @@ void main() {
       primarySwatch: Colors.green,
       //brightness: Brightness.dark
     ),
+    builder: (context, child) {
+      return ScrollConfiguration(
+        behavior: _RemoveListShadow(),
+        child: child!,
+      );
+    },
     home: SplashScreen(),
   ));
 }
@@ -50,8 +57,6 @@ class SplashScreen extends StatelessWidget {
 
   Future<void> _caricamento(BuildContext context) async {
 
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-
     var connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult == ConnectivityResult.none) {
       await Errors.connectionError(context);
@@ -83,13 +88,27 @@ class SplashScreen extends StatelessWidget {
       //Read database and upgrade constants variables
       await openDatabase(path, readOnly: true).then((db) => database.updateDatabase(db));
 
-      await Future.delayed(Duration(milliseconds: 900)).then((value) {
+      await Future.delayed(Duration(milliseconds: 900)).then((value) async {
         screenData.updateHeight(MediaQuery.of(context).size.height);
         screenData.updateHeight(MediaQuery.of(context).size.width);
+
+        //Load all files in the RXDart list class 
+        await RickMorty.getCharacters().then((value) => lists.updateCharacters(value));
+        await RickMorty.getEpisodes().then((value) => lists.updateEpisodes(value));
+        await RickMorty.getLocations().then((value) => lists.updateLocations(value));
         
+        //Send user to homepage
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
       });
     }
   }
 }
 
+
+///This class removes app lists shadows 
+class _RemoveListShadow extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}

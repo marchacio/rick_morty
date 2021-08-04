@@ -52,16 +52,20 @@ class _HomePageState extends State<HomePage> {
             ),
 
             SizedBox(height: 30),
+
+
+
+            SizedBox(height: 30),
             
             ///The main horizontal list
             CharactersWidget(),
 
-            SizedBox(height: 30),
+            SizedBox(height: 40),
 
             ///The episodes horizontal list
             EpisodesWidget(),
 
-            SizedBox(height: 30),
+            SizedBox(height: 40),
 
             ///The locations widget
             LocationsWidget(),

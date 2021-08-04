@@ -1,8 +1,6 @@
 
 import 'package:rick_morty/API/Enums/Gender.dart';
 import 'package:rick_morty/API/Enums/Status.dart';
-
-import 'Location.dart';
 import 'RickMortyDefaultClass.dart/RickMortyDefaultClass.dart';
 
 ///Character class for Rick and Morty API
@@ -22,11 +20,11 @@ class Character extends RickMortyDefaultClass {
   ///The gender of the character See more about [Gender].
   Gender? gender;
 
-  ///Name and link to the character's origin location
-  Location? origin;
+  ///Link to the character's origin location
+  String? origin;
 
-  ///Name and link to the character's last known location endpoint
-  Location? location;
+  ///Link to the character's last known location endpoint
+  String? location;
 
   ///Link to the character's image. 
   ///All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
