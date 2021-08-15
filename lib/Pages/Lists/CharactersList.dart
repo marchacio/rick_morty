@@ -43,6 +43,10 @@ class CharactersList extends StatelessWidget {
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetails(lists.characters[n]))),
             ),
             childCount: lists.characters.length,
+
+            //To save ram:
+            addAutomaticKeepAlives: false,
+            addRepaintBoundaries: false,
           ))
         ],
       )

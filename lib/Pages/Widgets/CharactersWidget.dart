@@ -27,6 +27,10 @@ class _CharactersWidgetState extends State<CharactersWidget> {
           height: screenData.screenHeight / 2,
           child: (lists.characters.isNotEmpty) 
             ? ListView.builder(
+              //To save ram:
+              addAutomaticKeepAlives: false,
+              addRepaintBoundaries: false,
+
               padding: EdgeInsets.symmetric(horizontal: 10),
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
