@@ -26,7 +26,7 @@ class CharacterDetails extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Hero(
-                  tag: character.id,
+                  tag: character.url,
                   child: Material(
                     child: Stack(
                       fit: StackFit.expand,

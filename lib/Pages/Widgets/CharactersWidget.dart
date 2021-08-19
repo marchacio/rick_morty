@@ -61,7 +61,7 @@ class _CharactersWidgetState extends State<CharactersWidget> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Hero(
-                      tag: lists.characters[n].id,
+                      tag: lists.characters[n].url,
                       child: Material(
                         child: Stack(
                           fit: StackFit.loose,

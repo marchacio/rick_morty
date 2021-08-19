@@ -16,7 +16,6 @@ class Episode extends RickMortyDefaultClass {
   List<String>? characters;
 
   Episode({
-    required int id,
     required String name,
     required String url,
     required String created,
@@ -25,7 +24,6 @@ class Episode extends RickMortyDefaultClass {
     this.episode,
     this.characters,
   }) : super(
-    id: id,
     name: name,
     url: url,
     created: created,

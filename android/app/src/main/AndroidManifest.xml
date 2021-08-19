@@ -3,8 +3,21 @@
 
    <uses-permission android:name="android.permission.INTERNET" />
 
+   <queries>
+      <!-- app opens https URLs -->
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+      </intent>
+      <!-- app emails -->
+      <intent>
+        <action android:name="android.intent.action.SEND" />
+        <data android:mimeType="*/*" />
+      </intent>
+  </queries>
+
    <application
-        android:label="rick_morty"
+        android:label="Rick and Morty Wiki"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

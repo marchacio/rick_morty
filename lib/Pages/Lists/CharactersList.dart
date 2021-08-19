@@ -34,7 +34,7 @@ class CharactersList extends StatelessWidget {
               title: Text(lists.characters[n].name),
               subtitle: Text(lists.characters[n].species ?? ''),
               trailing: Hero(
-                tag: lists.characters[n].id,
+                tag: lists.characters[n].url,
                 child: ClipOval(
                   child: Image.network(lists.characters[n].image
                     ?? 'https://is1-ssl.mzstatic.com/image/thumb/Purple115/v4/55/6c/3d/556c3db2-a149-332e-7e6e-a490f7b00f0c/source/256x256bb.jpg'),

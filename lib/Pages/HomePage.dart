@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rick_morty/CustomWidgets/RMText.dart';
 import 'package:rick_morty/Error/ErrorHandler.dart';
 import 'package:rick_morty/Pages/SearchPage/SearchPage.dart';
+import 'package:rick_morty/Pages/Settings/SettingsPage.dart';
 import 'package:rick_morty/Pages/Widgets/CharactersWidget.dart';
 import 'package:rick_morty/Pages/Widgets/EpisodesWidget.dart';
 import 'package:rick_morty/Pages/Widgets/LocationsWidget.dart';
@@ -54,25 +55,35 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 30),
 
-            GestureDetector(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage())),
-              child: Container(
-                height: 48,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Search...'),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage())),
+                    child: Container(
+                      height: 48,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Search...'),
 
-                    Icon(Icons.search),
-                  ],
+                          Icon(Icons.search),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                    ),
+                  ),
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-              ),
+
+                IconButton(
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage())), 
+                  icon: Icon(Icons.settings, color: Colors.green.shade800, size: 35,))
+              ],
             ),
 
             SizedBox(height: 30),

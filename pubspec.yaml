@@ -26,8 +26,9 @@ dependencies:
 
   cached_network_image: ^3.0.0
   connectivity: ^3.0.3
-  sqflite: ^2.0.0+3
   rxdart: ^0.27.0
+  url_launcher: ^6.0.9
+  xml2json: ^5.3.1
 
   #Package for app icon
   flutter_launcher_icons: ^0.9.1
@@ -35,6 +36,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  test: ^1.16.8
 
 #App icon settings
 flutter_icons:
@@ -55,7 +57,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - Assets/Database/Database.db
+    - Assets/Database/
 
     - Assets/Images/splashScreen.png
     - Assets/Images/avatar1.png

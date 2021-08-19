@@ -35,7 +35,6 @@ class Character extends RickMortyDefaultClass {
 
 
   Character({
-    required int id,
     required String name,
     required String created,
     required String url,
@@ -49,7 +48,6 @@ class Character extends RickMortyDefaultClass {
     this.status,
     this.type,
   }) : super(
-    id: id,
     name: name,
     url: url,
     created: created,

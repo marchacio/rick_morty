@@ -14,7 +14,6 @@ class Location extends RickMortyDefaultClass {
   List<String>? residents;
   
   Location({
-    required int id,
     required String name,
     required String created,
     required String url,
@@ -23,7 +22,6 @@ class Location extends RickMortyDefaultClass {
     this.dimension,
     this.residents,
   }) : super(
-    id: id,
     name: name,
     url: url,
     created: created,

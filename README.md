@@ -30,7 +30,7 @@ Other than that, under the "lib" folder I have divided the files by category:
 
 - **Pages**: this folder contains all the graphics pages of the app. it is the heart of the graphic part and is in turn divided into different folders, ordered according to the context
 
-- **RXDart**: This folder contains all the files dedicated to the management of the RXDart plugin, thanks to which the app loads all the data in ram and manages them
+- **RXDart**: This folder contains all the files dedicated to the management of the [RXDart plugin,]([rxdart | Dart Package](https://pub.dev/packages/rxdart)) thanks to which the app loads all the data in ram and manages them
 
 
 

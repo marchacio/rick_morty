@@ -1,7 +1,11 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:rick_morty/API/Classes/ALL.dart';
 import 'dart:math';
 
 import 'package:rick_morty/RXDart/Constants.dart';
+import 'package:xml2json/xml2json.dart';
 
 
 
@@ -9,16 +13,18 @@ import 'package:rick_morty/RXDart/Constants.dart';
 class RickMorty {
 
   ///Return all characters
-  static Future<List<Character>> getCharacters() async {
+  static Future<List<Character>> getCharacters(BuildContext context) async {
     List<Character> _finalList = [];
+    
 
-    //Load characters from database
-    List<Map<String, Object?>> _characters = await database.database.rawQuery('SELECT * FROM Characters');
+    final converter = Xml2Json();
+    String data = await DefaultAssetBundle.of(context).loadString("Assets/Database/Characters.xml");
+
+    converter.parse(data);
 
     ///Get the effective character and add it to _finalList
-    for (Map _character in _characters) {
+    for (Map _character in Map<String, dynamic>.from(json.decode(converter.toParker()))['characters']['row']) {
       _finalList.add(Character(
-        id: _character['id'],
         name: _character['name'],
         url: _character['url'],
         created: _character['created'],
@@ -39,16 +45,18 @@ class RickMorty {
 
 
   ///Return all episodes saved in database
-  static Future<List<Episode>> getEpisodes() async {
+  static Future<List<Episode>> getEpisodes(BuildContext context) async {
     List<Episode> _finalList = [];
 
-    //Load episodes from database
-    List<Map<String, Object?>> _episodes = await database.database.rawQuery('SELECT * FROM Episodes');
+
+    final converter = Xml2Json();
+    String data = await DefaultAssetBundle.of(context).loadString("Assets/Database/Episodes.xml");
+
+    converter.parse(data);
 
     //Get the effective episode and add it to _finalList
-    for (Map _episode in _episodes) {
+    for (Map _episode in Map<String, dynamic>.from(json.decode(converter.toParker()))['episodes']['row']) {
       _finalList.add(Episode(
-        id: _episode['id'],
         name: _episode['name'],
         url: _episode['url'],
         created: _episode['created'],
@@ -88,16 +96,18 @@ class RickMorty {
 
 
   ///Return all locations saved in database
-  static Future<List<Location>> getLocations() async {
+  static Future<List<Location>> getLocations(BuildContext context) async {
     List<Location> _finalList = [];
 
-    //Load locations from database
-    List<Map<String, Object?>> _locations = await database.database.rawQuery('SELECT * FROM Locations');
+
+    final converter = Xml2Json();
+    String data = await DefaultAssetBundle.of(context).loadString("Assets/Database/Locations.xml");
+
+    converter.parse(data);
 
     ///Get the effective location and add it to _finalList
-    for (Map _location in _locations) {
+    for (Map _location in Map<String, dynamic>.from(json.decode(converter.toParker()))['locations']['row']) {
       _finalList.add(Location(
-        id: _location['id'],
         name: _location['name'],
         url: _location['url'],
         created: _location['created'],
