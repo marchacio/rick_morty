@@ -101,7 +101,7 @@ class CharacterDetails extends StatelessWidget {
 
             SizedBox(height: 15),
 
-            if(character.origin != null) ListTile(
+            if(character.origin != null && (character.origin ?? '').trim() != '') ListTile(
               title: Text(lists.locations.where((element) => element.url == character.origin).first.name),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LocationDetails(
@@ -109,7 +109,7 @@ class CharacterDetails extends StatelessWidget {
               subtitle: Text('Origin'),
             ),
 
-            if(character.location != null) ListTile(
+            if(character.location != null && (character.origin ?? '').trim() != '') ListTile(
               title: Text(lists.locations.where((element) => element.url == character.location).first.name),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LocationDetails(

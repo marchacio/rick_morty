@@ -42,7 +42,7 @@ class LocationDetails extends StatelessWidget {
               subtitle: Text('Type'),
             ),
 
-            Column(
+            if(lists.characters.where((element) => (location.residents ?? []).contains(element.url)).isNotEmpty) Column(
               children: <Widget>[
                 Divider(color: Colors.transparent),
 
