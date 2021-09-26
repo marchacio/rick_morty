@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1091290176408",
+    "project_id": "rick-morty-a8c01",
+    "storage_bucket": "rick-morty-a8c01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091290176408:android:3f2009346f4b227545e9ed",
+        "android_client_info": {
+          "package_name": "com.marchacio.rick_morty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091290176408-jdtqadv9jr4kl5jr08oeo9gm70ubk8pg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marchacio.rick_morty",
+            "certificate_hash": "6ef8f011f5b1579466718288bd54952a320956f3"
+          }
+        },
+        {
+          "client_id": "1091290176408-tve566agrucmqc4umdetlqgl3up0tfhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY9Basxusy5PXDqOB12ObNNOowI4Zk9As"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091290176408-tve566agrucmqc4umdetlqgl3up0tfhr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

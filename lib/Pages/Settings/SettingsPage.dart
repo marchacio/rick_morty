@@ -40,6 +40,18 @@ class SettingsPage extends StatelessWidget {
               trailing: Icon(FontAwesomeIcons.instagram),
             ),
 
+            ListTile(
+              title: Text('Read Privacy Policy'),
+              onTap: () => launch('https://github.com/marchacio/rick_morty/PrivacyPolicy.md'),
+              trailing: Icon(Icons.keyboard_arrow_right_rounded),
+            ),
+
+            ListTile(
+              title: Text('Read Terms and Conditions'),
+              onTap: () => launch('https://github.com/marchacio/rick_morty/TermsConditions.md'),
+              trailing: Icon(Icons.keyboard_arrow_right_rounded),
+            ),
+
             Divider(),
 
             ListTile(
