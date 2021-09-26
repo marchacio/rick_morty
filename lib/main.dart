@@ -34,6 +34,9 @@ class SplashScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          Expanded(child: Container()),
+
           TweenAnimationBuilder(
             tween: Tween(begin: 0.4, end: 1),
             curve: Curves.bounceOut,
@@ -46,6 +49,13 @@ class SplashScreen extends StatelessWidget {
           ),
 
           Text('Everything you wanted to know', textAlign: TextAlign.center,),
+
+          Expanded(child: Container()),
+
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text('By Marchacio', style: TextStyle(color: Colors.grey)),
+          )
         ],
       ),
     );

@@ -22,32 +22,35 @@ class EpisodesWidget extends StatelessWidget {
           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodesList())),
         ),
 
-        (randomEpisodes.isNotEmpty) ? Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Wrap(
-            spacing: 5,
-            children: List<Widget>.generate(
-              randomEpisodes.length, 
-              (n) => GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodeDetails(randomEpisodes[n]))),
-                child: Chip(
-                  label: Text(randomEpisodes[n].name),
-                  onDeleted: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodeDetails(randomEpisodes[n]))),
-                  backgroundColor: Colors.grey.shade200,
-                  deleteIcon: RMText(randomEpisodes[n].episode!.replaceRange(3, null, '').replaceFirst('0', ' '), textScaleFactor: 0.9, maxLines: 1,),
-                ),
-              )
-            ) + [
-              GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodesList())),
-                child: Chip(
-                  backgroundColor: Colors.grey.shade200,
-                  label: Text('See all'),
-                  onDeleted: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodesList())),
-                  deleteIcon: Icon(Icons.keyboard_arrow_right, color: Colors.green),
-                ),
-              )
-            ],
+        (randomEpisodes.isNotEmpty) ? Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Wrap(
+              spacing: 10,
+              children: List<Widget>.generate(
+                randomEpisodes.length, 
+                (n) => GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodeDetails(randomEpisodes[n]))),
+                  child: Chip(
+                    label: Text(randomEpisodes[n].name),
+                    onDeleted: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodeDetails(randomEpisodes[n]))),
+                    backgroundColor: Colors.grey.shade200,
+                    deleteIcon: RMText(randomEpisodes[n].episode!.replaceRange(3, null, '').replaceFirst('0', ' '), textScaleFactor: 0.9, maxLines: 1,),
+                  ),
+                )
+              ) + [
+                GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodesList())),
+                  child: Chip(
+                    backgroundColor: Colors.grey.shade200,
+                    label: Text('See all'),
+                    onDeleted: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EpisodesList())),
+                    deleteIcon: Icon(Icons.keyboard_arrow_right, color: Colors.green),
+                  ),
+                )
+              ],
+            ),
           ),
         ) : Container(),
       ],

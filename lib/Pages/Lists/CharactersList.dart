@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty/Pages/DetailScreens/CharacterDetails.dart';
+import 'package:rick_morty/Pages/Widgets/SearchWidget.dart';
 import 'package:rick_morty/RXDart/Constants.dart';
 
 class CharactersList extends StatelessWidget {
@@ -11,6 +12,8 @@ class CharactersList extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverList(delegate: SliverChildListDelegate([
+            SizedBox(height: MediaQuery.of(context).padding.top),
+
             AspectRatio(
               aspectRatio: 1.4,
               child: Padding(
@@ -26,6 +29,15 @@ class CharactersList extends StatelessWidget {
                   child: BackButton(),
                 ),
               ) 
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  SearchWidget(),
+                ],
+              ),
             )
           ])),
 

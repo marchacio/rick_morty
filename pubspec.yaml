@@ -29,6 +29,7 @@ dependencies:
   rxdart: ^0.27.0
   url_launcher: ^6.0.9
   xml2json: ^5.3.1
+  font_awesome_flutter: ^9.1.0
 
   #Package for app icon
   flutter_launcher_icons: ^0.9.1

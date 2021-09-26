@@ -18,6 +18,13 @@ class LocationDetails extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverList(delegate: SliverChildListDelegate([
+            SizedBox(height: MediaQuery.of(context).padding.top),
+
+            Align(
+              alignment: Alignment.centerLeft,
+              child: BackButton(color: Colors.grey.shade700),
+            ),
+            
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(25),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty/CustomWidgets/RMText.dart';
 import 'package:rick_morty/Pages/DetailScreens/EpisodeDetails.dart';
+import 'package:rick_morty/Pages/Widgets/SearchWidget.dart';
 import 'package:rick_morty/RXDart/Constants.dart';
 
 
@@ -14,6 +15,8 @@ class EpisodesList extends StatelessWidget {
         slivers: <Widget>[
 
           SliverList(delegate: SliverChildListDelegate([
+            SizedBox(height: MediaQuery.of(context).padding.top),
+
             Stack(
               alignment: Alignment.topLeft,
               children: [
@@ -31,6 +34,15 @@ class EpisodesList extends StatelessWidget {
 
                 BackButton(),
               ],
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  SearchWidget(),
+                ],
+              ),
             )
           ])),
 

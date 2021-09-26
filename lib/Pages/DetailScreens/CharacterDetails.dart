@@ -43,11 +43,16 @@ class CharacterDetails extends StatelessWidget {
                           alignment: Alignment.bottomCenter,
                           child: AspectRatio(
                             aspectRatio: 10,
-                            child: AnimatedContainer(
-                              duration: Duration(seconds: 1),
+                            child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                                color: Theme.of(context).scaffoldBackgroundColor,
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Theme.of(context).scaffoldBackgroundColor.withOpacity(0),
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                  ]
+                                ),
                               ),
                             ),
                           ),
@@ -56,16 +61,8 @@ class CharacterDetails extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: AnimatedContainer(
-                              duration: Duration(seconds: 1),
-                              child: BackButton(),
-                              height: kFloatingActionButtonMargin,
-                              width: kFloatingActionButtonMargin,
-                              //decoration: BoxDecoration(
-                              //  shape: BoxShape.circle
-                              //),
-                            ),
+                            padding: EdgeInsets.all(MediaQuery.of(context).padding.top),
+                            child: BackButton(color: Colors.grey.shade700),
                           )
                         )
                       ],
